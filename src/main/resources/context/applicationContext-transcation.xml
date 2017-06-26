@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jee="http://www.springframework.org/schema/jee" 
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop" 
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	   					   http://www.springframework.org/schema/context
+	   					   http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	   					   http://www.springframework.org/schema/tx
+						   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+	   					   http://www.springframework.org/schema/aop
+	   					   http://www.springframework.org/schema/aop/spring-aop-4.1.xsd"
+default-lazy-init="false">
+
+	<import resource="applicationContext-dataSource.xml"/>
+	
+	<!-- 配置sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描实体对象包结构中存放的实体类 -->
+		<property name="packagesToScan">
+			<list>
+				<value>com.sglj.fbf.entity</value>
+			</list>
+		</property>
+		<!-- hibernate的相关属性配置 -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- 设置数据库方言 -->
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<!-- 是否在控制台显示sql -->
+				<prop key="hibernate.show_sql">${hibernate.showsql}</prop>
+				<!-- 是否格式化sql，优化显示 -->
+				<prop key="hibernate.format_sql">${hibernate.formatsql}</prop>
+				<!-- 是否开启二级缓存 -->
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.use_second_level_cache}</prop>
+				<!-- 是否开启查询缓存 -->
+				<prop key="hibernate.cache.use_query_cache">${hibernate.use_query_cache}</prop>
+				<!-- 数据库批量查询最大数 -->
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.fetch_size}</prop>
+				<!-- 数据库批量更新、添加、删除操作最大数 -->
+				<prop key="hibernate.jdbc.batch_size">${hibernate.batch_size}</prop>
+				<!-- 设置自动创建|更新|验证数据库表结构 -->
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="baseHibernateDao" class="com.sglj.fbf.crud.dao.impl.BaseHibernateDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 定义事务管理 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 事务执行方式 REQUIRED：指定当前方法必需在事务环境中运行， 如果当前有事务环境就加入
+			当前正在执行的事务环境， 如果当前没有事务，就新建一个事务。这是默认值。 -->
+	
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="import*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="execute*" propagation="REQUIRED" />
+			<tx:method name="submit*" propagation="REQUIRED" />
+	
+			<!-- 指定当前方法以非事务方式执行操作，如果当前存在事务，就把当前事务挂起，等我以非事务的状态运行完，
+			再继续原来的事务。 查询定义即可 read-only="true" 表示只读 -->
+			<tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 定义切面，在 * xx.*.service.*ServiceImpl.*(..) 中执行有关的hibernate session的事务操作 -->
+	<aop:config>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.sglj.fbf..*Service*.*(..))" />
+	</aop:config>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+<modelVersion>4.0.0</modelVersion>
+<groupId>com.wei</groupId>
+<artifactId>wei</artifactId>
+<version>1.0</version>
+<packaging>war</packaging>
+
+<properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<ghw.spring.version>4.1.8.RELEASE</ghw.spring.version>
+	<ghw.jdk.version>1.7</ghw.jdk.version>
+	<ghw.maven.compiler.version>3.3</ghw.maven.compiler.version>
+	<ghw.maven.shade.version>2.3</ghw.maven.shade.version>
+	<ghw.maven.war.version>2.6</ghw.maven.war.version>
+	<ghw.encoding.version>UTF-8</ghw.encoding.version>
+	<ghw.uriEncoding.version>UTF-8</ghw.uriEncoding.version>
+	<ghw.maven.jar.version>2.6</ghw.maven.jar.version>
+	<ghw.maven.tomcat7.version>2.2</ghw.maven.tomcat7.version>
+	<ghw.freemarker.version>2.3.23</ghw.freemarker.version>
+	<ghw.velocity.version>1.7</ghw.velocity.version>
+	<ghw.spring.webservlet.version>3.2.5.RELEASE</ghw.spring.webservlet.version>
+	<ghw.spymemcached.version>2.12.0</ghw.spymemcached.version>
+	<ghw.ehcache.version>2.9.1</ghw.ehcache.version>
+	<ghw.aspectjrt.version>1.8.6</ghw.aspectjrt.version>
+	<ghw.servlet-api.version>3.1.0</ghw.servlet-api.version>
+	<ghw.mysql.version>5.1.33</ghw.mysql.version>
+	<ghw.hibernate.version>3.6.9.Final</ghw.hibernate.version>
+	<ghw.hibernate-validator.version>4.3.2.Final</ghw.hibernate-validator.version>
+	<ghw.hibernate-entitymanager.version>3.6.9.Final</ghw.hibernate-entitymanager.version>
+	<ghw.jedis.version>2.7.2</ghw.jedis.version>
+	<ghw.xstream.version>1.4.7</ghw.xstream.version>
+	<ghw.poi.version>3.10-FINAL</ghw.poi.version>
+	<ghw.commons-email.version>1.4</ghw.commons-email.version>
+	<ghw.commons-jexl.version>1.1</ghw.commons-jexl.version>
+	<ghw.commons-pool.version>1.6</ghw.commons-pool.version>
+	<ghw.commons-validator.version>1.4.1</ghw.commons-validator.version>
+	<ghw.commons-httpclient.version>3.1</ghw.commons-httpclient.version>
+	<ghw.jxl.version>2.6.12</ghw.jxl.version>
+	<ghw.mail.version>1.4.7</ghw.mail.version>
+	<ghw.p6spy.version>2.1.4</ghw.p6spy.version>
+	<ghw.quartz.version>2.2.1</ghw.quartz.version>
+	<ghw.httpclient.version>4.2.5</ghw.httpclient.version>
+	<ghw.httpcore.version>4.2.4</ghw.httpcore.version>
+	<ghw.httpmime.version>4.2.5</ghw.httpmime.version>
+	<ghw.fastjson.version>1.2.6</ghw.fastjson.version>
+	<ghw.commons-fileupload.version>1.3.1</ghw.commons-fileupload.version>
+	<ghw.guava.version>18.0</ghw.guava.version>
+	<ghw.apache-camel.version>2.15.0</ghw.apache-camel.version>
+	<ghw.joda-time.version>2.8.2</ghw.joda-time.version>
+	<ghw.joda-beans.version>1.6</ghw.joda-beans.version>
+	<ghw.joda-convert.version>1.7</ghw.joda-convert.version>
+	<ghw.joda-money.version>0.10.0</ghw.joda-money.version>
+	<ghw.junit.version>4.10</ghw.junit.version>
+	<ghw.dubbo.version>2.5.3</ghw.dubbo.version>
+	<ghw.hibernate-jpa.version>1.0.0.Draft-16</ghw.hibernate-jpa.version>
+	<ghw.spring-security.version>4.0.0.RELEASE</ghw.spring-security.version>
+	<ghw.c3p0.version>0.9.5.2</ghw.c3p0.version>
+	<ghw.jackson.version>2.5.5</ghw.jackson.version>
+	<ghw.shiro.version>1.2.4</ghw.shiro.version>
+	<ghw.druid.version>1.0.8</ghw.druid.version>
+	<ghw.oracle-driver.version>10.2.0.4.0</ghw.oracle-driver.version>
+	<ghw.jstl.version>1.2</ghw.jstl.version>
+	<ghw.spring-mock.version>2.0.8</ghw.spring-mock.version>
+	<ghw.picketlink.version>1.4.6.Final</ghw.picketlink.version>
+	<ghw.cdi.version>1.2</ghw.cdi.version>
+	<ghw.javax-jms.version>2.0.1</ghw.javax-jms.version>
+	<ghw.groovy.version>1.5.6</ghw.groovy.version>
+	<ghw.ant.version>1.9.6</ghw.ant.version>
+	<ghw.subethamail.version>1.2</ghw.subethamail.version>
+	<ghw.mockrunner.version>1.1.0</ghw.mockrunner.version>
+	<ghw.drools.version>5.0.1</ghw.drools.version>
+	<ghw.bsh.version>2.0b5</ghw.bsh.version>
+	<ghw.juel.version>2.1.3</ghw.juel.version>
+	<ghw.cxf.version>2.7.7</ghw.cxf.version>
+	<ghw.wsdl4j.version>1.6.3</ghw.wsdl4j.version>
+	<ghw.jettison.version>1.3.7</ghw.jettison.version>
+	<ghw.jdom.version>1.1.3</ghw.jdom.version>
+	<ghw.xom.version>1.1.0</ghw.xom.version>
+</properties>
+
+	<dependencies>
+		<!-- TEST Start -->
+		<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-test</artifactId>
+  			<version>${ghw.spring.version}</version>
+  			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-mock</artifactId>
+  			<version>${ghw.spring-mock.version}</version>
+  			<scope>provided</scope>
+  			<exclusions>
+  				<exclusion>
+  					<artifactId>servlet-api</artifactId>
+  					<groupId>javax.servlet</groupId>
+  				</exclusion>
+  			</exclusions>
+		</dependency>
+		
+		<dependency>
+ 			<groupId>junit</groupId>
+  			<artifactId>junit</artifactId>
+  			<version>${ghw.junit.version}</version>
+  			<scope>provided</scope>
+		</dependency>
+		
+		<!-- TEST End -->
+		
+		<!-- Spring Start -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-beans</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-core</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-context</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-context-support</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-jdbc</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-tx</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-orm</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-web</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-webmvc</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-aspects</artifactId>
+  			<version>${ghw.spring.version}</version>
+		</dependency>
+		
+		<!-- <dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>org.springframework.web.servlet</artifactId>
+ 			<version>${ghw.spring.webservlet.version}</version>
+ 			<exclusions>
+  				<exclusion>
+  					<artifactId>org.springframework.web</artifactId>
+  					<groupId>org.springframework</groupId>
+  				</exclusion>
+  				<exclusion>
+  					<artifactId>org.springframework.core</artifactId>
+  					<groupId>org.springframework</groupId>
+  				</exclusion>
+  				<exclusion>
+  					<artifactId>org.springframework.beans</artifactId>
+  					<groupId>org.springframework</groupId>
+  				</exclusion>
+  				<exclusion>
+  					<artifactId>
+  						com.springsource.org.apache.commons.logging
+  					</artifactId>
+  					<groupId>org.apache.commons</groupId>
+  				</exclusion>
+  				<exclusion>
+  					<artifactId>
+  						org.springframework.context
+  					</artifactId>
+  					<groupId>org.springframework</groupId>
+  				</exclusion>
+  			</exclusions>
+		</dependency> -->
+		
+		<!-- Spring End -->
+		
+		<!-- Spring security Start -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+  			<artifactId>spring-security-core</artifactId>
+  			<version>${ghw.spring-security.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.springframework.security</groupId>
+  			<artifactId>spring-security-web</artifactId>
+  			<version>${ghw.spring-security.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+  			<artifactId>spring-security-config</artifactId>
+  			<version>${ghw.spring-security.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.springframework.security</groupId>
+  			<artifactId>spring-security-taglibs</artifactId>
+  			<version>${ghw.spring-security.version}</version>
+		</dependency>
+		
+		<!-- Spring security End -->
+		
+		
+		<!-- hibernate Start -->
+		
+		<dependency>
+  			<groupId>org.hibernate</groupId>
+  			<artifactId>hibernate-core</artifactId>
+  			<version>${ghw.hibernate.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.hibernate.javax.persistence</groupId>
+  			<artifactId>hibernate-jpa-2.1-api</artifactId>
+  			<version>${ghw.hibernate-jpa.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.hibernate</groupId>
+  			<artifactId>hibernate-validator</artifactId>
+  			<version>${ghw.hibernate-validator.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.hibernate</groupId>
+  			<artifactId>hibernate-entitymanager</artifactId>
+  			<version>${ghw.hibernate-entitymanager.version}</version>
+		</dependency>
+		
+		<!-- hibernate End -->
+		
+		<!-- XML Start -->
+		
+		<dependency>
+  			<groupId>com.thoughtworks.xstream</groupId>
+  			<artifactId>xstream</artifactId>
+  			<version>${ghw.xstream.version}</version>
+		</dependency>
+		
+		<!-- XML End -->
+		
+		<!-- Excel Start -->
+		
+		<dependency>
+  			<groupId>org.apache.poi</groupId>
+  			<artifactId>poi</artifactId>
+  			<version>${ghw.poi.version}</version>
+		</dependency>
+		
+		<!-- Excel End -->
+		
+		<!-- Json Start -->
+		<dependency>
+  			<groupId>com.alibaba</groupId>
+  			<artifactId>fastjson</artifactId>
+  			<version>${ghw.fastjson.version}</version>
+		</dependency>
+		
+		<!-- Json End -->
+		
+		<!-- db driver start -->
+		<dependency>
+  			<groupId>mysql</groupId>
+  			<artifactId>mysql-connector-java</artifactId>
+  			<version>${ghw.mysql.version}</version>
+		</dependency>
+  		
+  		<!-- db driver end -->
+		
+		<dependency>
+  			<groupId>org.aspectj</groupId>
+  			<artifactId>aspectjrt</artifactId>
+  			<version>${ghw.aspectjrt.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>javax.servlet</groupId>
+  			<artifactId>javax.servlet-api</artifactId>
+  			<version>${ghw.servlet-api.version}</version>
+  			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.apache.commons</groupId>
+  			<artifactId>commons-email</artifactId>
+  			<version>${ghw.commons-email.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
+	
+		<dependency>
+  			<groupId>commons-jexl</groupId>
+  			<artifactId>commons-jexl</artifactId>
+  			<version>${ghw.commons-jexl.version}</version>
+		</dependency>
+ 
+ 		<dependency>
+  			<groupId>commons-pool</groupId>
+  			<artifactId>commons-pool</artifactId>
+  			<version>${ghw.commons-pool.version}</version>
+		</dependency>
+	
+		<dependency>
+  			<groupId>commons-validator</groupId>
+  			<artifactId>commons-validator</artifactId>
+  			<version>${ghw.commons-validator.version}</version>
+		</dependency>
+	
+		<dependency>
+  			<groupId>apache-httpclient</groupId>
+  			<artifactId>commons-httpclient</artifactId>
+  			<version>${ghw.commons-httpclient.version}</version>
+		</dependency>
+	
+		<dependency>
+  			<groupId>javax.mail</groupId>
+  			<artifactId>mail</artifactId>
+  			<version>${ghw.mail.version}</version>
+		</dependency>
+	
+		<dependency>
+  			<groupId>org.quartz-scheduler</groupId>
+  			<artifactId>quartz</artifactId>
+  			<version>${ghw.quartz.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${ghw.httpclient.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>${ghw.httpcore.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>${ghw.httpmime.version}</version>
+		</dependency>
+
+		<dependency>
+  			<groupId>commons-fileupload</groupId>
+  			<artifactId>commons-fileupload</artifactId>
+  			<version>${ghw.commons-fileupload.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>com.google.guava</groupId>
+  			<artifactId>guava</artifactId>
+  			<version>${ghw.guava.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>joda-time</groupId>
+  			<artifactId>joda-time</artifactId>
+  			<version>${ghw.joda-time.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.joda</groupId>
+  			<artifactId>joda-beans</artifactId>
+  			<version>${ghw.joda-beans.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.joda</groupId>
+  			<artifactId>joda-convert</artifactId>
+  			<version>${ghw.joda-convert.version}</version>
+		</dependency>
+
+		<dependency>
+  			<groupId>org.joda</groupId>
+  			<artifactId>joda-money</artifactId>
+  			<version>${ghw.joda-money.version}</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>com.alibaba</groupId>
+  			<artifactId>druid</artifactId>
+  			<version>${ghw.druid.version}</version>
+		</dependency>
+  		
+  		<dependency>
+  			<groupId>org.jdom</groupId>
+  			<artifactId>jdom</artifactId>
+  			<version>${ghw.jdom.version}</version>
+  		</dependency>
+  		
+  		<!-- <dependency>
+  			<groupId>nu.xom</groupId>
+  			<artifactId>com.springsource.nu.xom</artifactId>
+  			<version>${ghw.xom.version}</version>
+		</dependency> -->
+		
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.4</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.10</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>1.17</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		
+		
+	</dependencies>
+
+<build>
+	<directory>${basedir}/target</directory>
+	<outputDirectory>${project.build.directory}/classes</outputDirectory>
+	<testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+	<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+	<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<encoding>${ghw.encoding.version}</encoding>
+				</configuration> 
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${ghw.maven.compiler.version}</version>
+				<configuration>
+					<source>${ghw.jdk.version}</source>
+					<target>${ghw.jdk.version}</target>
+					<encoding>${ghw.encoding.version}</encoding>
+					<meminitial>512m</meminitial>
+					<maxmem>512m</maxmem>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${ghw.maven.shade.version}</version>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${ghw.maven.war.version}</version>
+				<configuration>
+					<source>${ghw.jdk.version}</source>
+					<target>${ghw.jdk.version}</target>
+					<encoding>${ghw.encoding.version}</encoding>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+ 				<artifactId>maven-jar-plugin</artifactId>
+ 				<version>${ghw.maven.jar.version}</version>
+ 				<configuration>
+					<source>${ghw.jdk.version}</source>
+					<target>${ghw.jdk.version}</target>
+					<encoding>${ghw.encoding.version}</encoding>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+ 				<artifactId>tomcat7-maven-plugin</artifactId>
+ 				<version>${ghw.maven.tomcat7.version}</version>
+			</plugin>
+			
+			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-javadoc-plugin</artifactId>
+  				<version>2.10</version>
+			</plugin>
+			
+			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-install-plugin</artifactId>
+  				<version>2.5.2</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-enforcer-plugin</artifactId>
+  				<version>1.4.1</version>
+			</plugin>
+
+			<plugin>
+ 				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-ear-plugin</artifactId>
+  				<version>2.10.1</version>
+			</plugin>
+	
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-clean-plugin</artifactId>
+  				<version>2.5</version>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-changes-plugin</artifactId>
+  				<version>2.11</version>
+			</plugin>
+	
+			<plugin>
+	 			<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-ant-plugin</artifactId>
+  				<version>2.4</version>
+			</plugin>
+	
+			<plugin>
+	 			<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-dependency-plugin</artifactId>
+  				<version>2.10</version>
+			</plugin>
+	
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-checkstyle-plugin</artifactId>
+  				<version>2.17</version>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-surefire-plugin</artifactId>
+        		<version>2.17</version>
+        		<configuration>
+          			<testFailureIgnore>true</testFailureIgnore>
+          			<testClassesDirectory>${project.build.directory}/test-classes</testClassesDirectory>
+        		</configuration>
+			</plugin>
+			
+		</plugins>
+		
+	</pluginManagement>
+	
+	<plugins>
+		<plugin>
+			<groupId>org.apache.tomcat.maven</groupId>
+ 			<artifactId>tomcat7-maven-plugin</artifactId>
+			<configuration>
+				<source>${ghw.jdk.version}</source>
+				<target>${ghw.jdk.version}</target>
+				<encoding>${ghw.encoding.version}</encoding>
+				<uriEncoding>${ghw.uriEncoding.version}</uriEncoding>
+				<port>7070</port>
+				<path>/web</path>
+				<contextFile>${basedir}/target/classes/tomcatconf/context.xml</contextFile>
+				<tomcatUsers>${basedir}/target/classes/tomcatconf/tomcat-users.xml</tomcatUsers>
+				<contextReloadable>true</contextReloadable>
+				<useTestClasspath>false</useTestClasspath>
+				<enableNaming>true</enableNaming>
+				<update>true</update>
+			</configuration>
+		</plugin>
+	</plugins>
+	
+</build>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</project>

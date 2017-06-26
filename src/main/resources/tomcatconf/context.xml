@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context reloadable="false">
+
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+	
+	<!-- <Resource
+		name="jndi/ghw-test"
+		type="javax.sql.DataSource"
+		username="ghw-test"
+		password="ghw-test"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://127.0.0.1:3306/ghw-test" 
+	/> -->
+
+
+</Context>

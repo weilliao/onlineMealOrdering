@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	    http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd"
+default-lazy-init="false">
+	
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	
+	<mvc:interceptors>
+       <!--身份验证的拦截器-->
+       <bean id="authorizationInterceptor" class="com.sglj.fbf.interceptor.AuthorizationInterceptor">
+              <!--验证信息存储的Http头-->
+              <property name="httpHeaderName" value="authorization" />
+              <!--验证信息通用前缀，例如Bearer-->
+              <property name="httpHeaderPrefix" value="" />
+              <!--验证失败时的错误信息-->
+              <property name="unauthorizedErrorMessage" value="令牌失效，请重新登录" />
+       </bean>      
+	</mvc:interceptors>
+	
+	<!-- spring mvc 默认处理 -->
+	 <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters register-defaults="true">
+        	<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            	<constructor-arg name="defaultCharset"  value="UTF-8" />
+            	<property name="writeAcceptCharset" value="false" />
+            	<property name="supportedMediaTypes">
+            		<list>
+                       	<bean class="org.springframework.http.MediaType">
+                           	<constructor-arg index="0" value="text" />
+                           	<constructor-arg index="1" value="plain" />
+                           	<constructor-arg index="2" value="UTF-8" />
+                       	</bean>
+                       	
+                       	<bean class="org.springframework.http.MediaType">
+                           	<constructor-arg index="0" value="application" />
+                           	<constructor-arg index="1" value="json" />
+                           	<constructor-arg index="2" value="UTF-8" />
+                       	</bean>
+                       	
+                       	<bean class="org.springframework.http.MediaType">
+                           	<constructor-arg index="0" value="application" />
+                           	<constructor-arg index="1" value="xml" />
+                           	<constructor-arg index="2" value="UTF-8" />
+                       	</bean>
+                       	
+                       	<bean class="org.springframework.http.MediaType">
+                           	<constructor-arg index="0" value="application" />
+                           	<constructor-arg index="1" value="x-www-form-urlencoded" />
+                           	<constructor-arg index="2" value="UTF-8" />
+                       	</bean>
+                   	</list>
+            	</property>
+        	</bean>
+            <bean class="com.sglj.fbf.spring.JSONHttpMessageConverter" />
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+	
+	<!-- 类型转换  -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.sglj.fbf.spring.String2DateConverter" />
+            </list>
+        </property>
+    </bean>
+    
+	<context:component-scan base-package="com.sglj.fbf.controller"  use-default-filters="false" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<!-- 文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="maxUploadSize" value="104857600" />
+		<property name="maxInMemorySize" value="4096" />
+	</bean>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</beans>
